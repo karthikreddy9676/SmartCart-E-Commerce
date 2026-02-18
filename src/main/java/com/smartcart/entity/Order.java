@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long order_Id;
 	@ManyToOne
 	private User user;
 	
