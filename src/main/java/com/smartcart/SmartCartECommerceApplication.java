@@ -8,11 +8,8 @@ public class SmartCartECommerceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmartCartECommerceApplication.class, args);
-		System.out.println("karthik");
-		System.out.println("SmartCartECommerceApplication.main()");
-		System.out.println("Divya");
-		System.out.println("Rama koti");
 		
+
 		System.out.println("kalyan ram");
 
 		System.out.println("Shyam");
@@ -23,6 +20,7 @@ public class SmartCartECommerceApplication {
 		System.out.println("BHUMEEEE");
 		System.out.println("kalyan");
 		
+
 		}
 
 }
