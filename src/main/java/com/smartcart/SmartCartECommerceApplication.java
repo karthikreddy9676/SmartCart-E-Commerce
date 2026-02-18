@@ -11,6 +11,17 @@ public class SmartCartECommerceApplication {
 		System.out.println("karthik");
 		System.out.println("SmartCartECommerceApplication.main()");
 		System.out.println("Divya");
+		System.out.println("Rama koti");
+		
+		System.out.println("kalyan ram");
+
+		System.out.println("Shyam");
+
+		System.out.println("sathyaaa");
+		
+		System.out.println("Shyammmmmmmmm");
+		System.out.println("BHUMEEEE");
+		
 		}
 
 }

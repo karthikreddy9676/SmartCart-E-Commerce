@@ -1,9 +1,6 @@
 Manifest-Version: 1.0
 Build-Jdk-Spec: 21
-<<<<<<< HEAD
-=======
 Implementation-Title: SmartCart_E-Commerce
 Implementation-Version: 0.0.1-SNAPSHOT
->>>>>>> branch 'master' of https://github.com/karthikreddy9676/SmartCart-E-Commerce.git
 Created-By: Maven Integration for Eclipse
 
