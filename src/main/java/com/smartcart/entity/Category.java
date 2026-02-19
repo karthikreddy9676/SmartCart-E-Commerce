@@ -19,7 +19,10 @@ public class Category {
 	private Long id;
 	@Column(nullable = false, length = 30, unique = true)
 	private String name;
+	
+	@Column(nullable = false, length = 300)
 	private String description;
+	
 	@OneToMany(mappedBy = "category")
 	private List<Product> products;
 	
