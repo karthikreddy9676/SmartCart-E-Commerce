@@ -16,10 +16,10 @@ import jakarta.persistence.Table;
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long category_id;
 	@Column(nullable = false, length = 30, unique = true)
-	private String name;
-	private String description;
+	private String category_name;
+	private String category_description;
 	@OneToMany(mappedBy = "category")
 	private List<Product> products;
 	
