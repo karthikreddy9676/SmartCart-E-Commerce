@@ -1,65 +1,67 @@
 package com.smartcart.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
+@Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
-@Entity
-@Table(name = "user")
+@AllArgsConstructor
 public class User {
 
     @Id
-    @SequenceGenerator(name = "u", sequenceName = "user_seq", initialValue = 1000, allocationSize = 1)
-    @GeneratedValue(generator = "u", strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
-    @Column(name = "FIRST_NAME", length = 50)
-    @NonNull
-    private String firstName;
+    @Column(nullable = false)
+    private String fullName;
 
-    @Column(name = "LAST_NAME", length = 50)
-    @NonNull
-    private String lastName;
-
-    @Column(name = "EMAIL", length = 100, unique = true)
-    @NonNull
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "PASSWORD", length = 255)
-    @NonNull
+    @Column(nullable = false, unique = true)
+    private String phone;
+
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "MOBILE", length = 15)
-    private String mobile;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ROLE_ID")
+    // USER or ADMIN
+    @Enumerated(EnumType.STRING)
     private Role role;
-    @Version
-    @Column(name = "UPDATED_COUNT")
-    private Integer updateCount;
 
-    @CreationTimestamp
-    @Column(name = "CREATED_ON", insertable = true, updatable = false)
-    private LocalDateTime createdOn;
+    // account active status
+    private Boolean enabled = true;
 
-    @UpdateTimestamp
-    @Column(name = "LAST_UPDATED_ON", insertable = false, updatable = true)
-    private LocalDateTime lastUpdatedOn;
+    // address info
+    private String address;
+    private String city;
+    private String state;
+   
 
-    @Column(name = "OPEN_BY")
-    private String openedBy;
+    // orders placed by user
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
-    @Column(name = "UPDATED_BY")
-    private String updatedBy;
+    // account creation time
+    private LocalDateTime createdAt;
+
+    // last updated time
+    private LocalDateTime updatedAt;
+
+   
 }

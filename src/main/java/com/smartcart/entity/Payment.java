@@ -18,15 +18,12 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
 @Table(name = "payments")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-
 public class Payment {
 
 
