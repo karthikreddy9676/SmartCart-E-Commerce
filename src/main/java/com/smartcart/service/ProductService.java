@@ -1,7 +1,7 @@
 
 package com.smartcart.service;
 
-public interface ProductService {
+public interface  ProductService {
 
 }
 
