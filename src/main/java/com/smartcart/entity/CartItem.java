@@ -8,16 +8,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
-@Table(name="cart_item")
+@Table(name = "cart_item")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CartItem {
+<<<<<<< HEAD
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cartItem_id;
@@ -43,7 +43,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "cart_item")
+@Table
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

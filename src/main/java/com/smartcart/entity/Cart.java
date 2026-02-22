@@ -1,5 +1,5 @@
-
 package com.smartcart.entity;
+
 
 //existing entity created by our team member
 //import jakarta.persistence.Entity;

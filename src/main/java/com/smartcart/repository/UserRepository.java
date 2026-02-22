@@ -1,7 +1,7 @@
 
 package com.smartcart.repository;
 
-public class UserRepository {
+public interface UserRepository {
 
 }
 

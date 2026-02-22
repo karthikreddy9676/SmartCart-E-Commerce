@@ -1,3 +1,4 @@
+
 package com.smartcart.entity;
 
 
@@ -60,7 +61,6 @@ public class User {
 
 //created newly
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -85,10 +85,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    
+   
     private String userName;
-    
+ 
     private String email;
+   
     
     private String password;
 
@@ -139,5 +140,3 @@ public class User {
     }
 
 }
-
-
