@@ -1,6 +1,7 @@
 package com.smartcart.entity;
 
-import jakarta.persistence.Entity;
+//existing entity created by our team member
+/*import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,22 +17,49 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CartItem {
+<<<<<<< HEAD
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long cartItem_id;
+	@ManyToOne
+	@JoinColumn(name="cart_id")
+	private Cart Item_cart;
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Product product;
+	private int quantity;
+}
+*/
 
+
+//newly updated
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+@Table
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long cartItemId;
 
-    // Many items → one cart
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
+    @JoinColumn(name = "cart_id")
+    @JsonBackReference
     private Cart cart;
 
-    // Many items → one product
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    private int quantity;
+    private Integer quantity;
+    private Double discount;
+    private Double productPrice;
+}
 
-    private double price; // price at time of adding (important!)
-	}

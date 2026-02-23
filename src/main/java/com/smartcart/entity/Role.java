@@ -1,7 +1,8 @@
 
 package com.smartcart.entity;
 
-import java.time.LocalDateTime;
+//existing entity created by our team member
+/*import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -60,9 +61,34 @@ public class Role {
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
 	
-	
-	
-	
-	
 }
+*/
+
+
+//newly updated
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer roleId;
+
+    @Enumerated(EnumType.STRING)
+    private AppRole roleName;
+
+    public Role(AppRole roleName) {
+        this.roleName = roleName;
+    }
+}
+
+
+
 
