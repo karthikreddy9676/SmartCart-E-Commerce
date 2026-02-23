@@ -1,7 +1,8 @@
 
 package com.smartcart.entity;
 
-import java.time.LocalDateTime;
+//existing entity created by our team member
+/*import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,22 +24,22 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "ROLE")
+@Table(name = "role")
 public class Role {
 	
 	//data
 	@Id
 	@SequenceGenerator(name = "r", sequenceName = "role_seq", initialValue = 1000, allocationSize = 1)
 	@GeneratedValue(generator = "r", strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long role_id;
 	
 	@Column(name = "NAME", length = 50)
 	@NonNull
-	private String name;
+	private String role_name;
 	
 	@Column(name = "DESCRIPTION", length = 50)
 	@NonNull
-	private String description;
+	private String role_description;
 	
 	
 	//meta data
@@ -60,9 +61,34 @@ public class Role {
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
 	
-	
-	
-	
-	
 }
+*/
+
+
+//newly updated
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer roleId;
+
+    @Enumerated(EnumType.STRING)
+    private AppRole roleName;
+
+    public Role(AppRole roleName) {
+        this.roleName = roleName;
+    }
+}
+
+
+
 

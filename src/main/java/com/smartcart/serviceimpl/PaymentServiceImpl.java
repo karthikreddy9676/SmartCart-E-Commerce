@@ -1,5 +1,7 @@
 package com.smartcart.serviceimpl;
 
-public class PaymentServiceImpl {
+import com.smartcart.service.PaymentService;
+
+public class PaymentServiceImpl  implements PaymentService{
 
 }

@@ -1,7 +1,7 @@
 
 package com.smartcart.service;
 
-public class UserService {
+public interface UserService {
 
 }
 
