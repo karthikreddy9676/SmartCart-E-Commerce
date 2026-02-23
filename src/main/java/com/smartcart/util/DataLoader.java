@@ -266,7 +266,7 @@ public class DataLoader {
             shoes.setSpecialPrice(shoesPriceToUse);
             blender.setSpecialPrice(blenderPriceToUse);
             camera.setSpecialPrice(cameraPriceToUse);
-
+            //
 
             // Persist products
             productRepository.saveAll(List.of(mobile, tshirt, washingMachine, refrigerator, novel,
