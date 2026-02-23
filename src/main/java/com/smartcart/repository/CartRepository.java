@@ -1,12 +1,10 @@
-<<<<<<< HEAD
-
 package com.smartcart.repository;
 
-public interface CartRepository {
 
-}
-=======
-package com.smartcart.repository;
+//public interface CartRepository {
+//
+//}
+
 
 import java.util.Optional;
 
@@ -21,4 +19,3 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     Optional<Cart> findByUser_UserId(Long userId);
 
 }
->>>>>>> branch 'master' of https://github.com/karthikreddy9676/SmartCart-E-Commerce.git
