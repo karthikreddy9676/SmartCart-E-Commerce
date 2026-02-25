@@ -1,30 +1,33 @@
 package com.smartcart.entity;
 
 
-import jakarta.persistence.Id;
-
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+//created newly
+
+
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
-
-@NoArgsConstructor
-@AllArgsConstructor
 
 public class User {
 	@Id
@@ -33,41 +36,59 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-
-    @Column(nullable = false)
-    private String fullName;
-
-    @Column(nullable = false, unique = true)
+   
+    private String userName;
+ 
     private String email;
-
-    @Column(nullable = false, unique = true)
-    private String phone;
-
-    @Column(nullable = false)
+   
+    
     private String password;
 
-    // USER or ADMIN
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Getter
+    @Setter
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
-    // account active status
-    private Boolean enabled = true;
+    @ToString.Exclude
+    @OneToMany(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            
+            orphanRemoval = true
+    )
+    private Set<Product> products;
 
-    // address info
-    private String address;
-    private String city;
-    private String state;
-   
+    @Getter
+    @Setter
+    @OneToMany(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    
+    private List<Address> addresses = new ArrayList<>();
 
-    // orders placed by user
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orders;
+    @ToString.Exclude
+    @OneToOne(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            orphanRemoval = true
+    )
+    private Cart cart;
 
-    // account creation time
-    private LocalDateTime createdAt;
+    public User(String username, String email, String password) {
+        this.userName = username;
+        this.email = email;
+        this.password = password;
+    }
 
-    // last updated time
-    private LocalDateTime updatedAt;
-
-   
 }

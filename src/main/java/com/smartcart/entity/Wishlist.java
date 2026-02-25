@@ -1,33 +1,32 @@
+
+//newly added
 package com.smartcart.entity;
 
-//newly updated
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@Table
-public class CartItem {
+@Table(name = "wishlist")
+public class Wishlist {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartItemId;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    @JsonBackReference
-    private Cart cart;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private Integer quantity;
-    private Double discount;
-    private Double productPrice;
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
-
