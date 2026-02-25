@@ -13,21 +13,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
 @Table(name = "payments")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
-
 public class Payment {
 
 
@@ -36,9 +33,9 @@ public class Payment {
     @SequenceGenerator(name="gen1",sequenceName = "payment_seq1",initialValue = 1,allocationSize = 1)
     @GeneratedValue( generator = "gen1",strategy = GenerationType.SEQUENCE)
     private Long payment_Id;
-    @OneToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
-    @JoinColumn(name="oder_Id",referencedColumnName = "payment_Id")
     
+    @ManyToOne(targetEntity = Order.class,cascade = CascadeType.ALL)
+    @JoinColumn(name="oder_Id",referencedColumnName = "payment_Id")
     private Order order;
     
    

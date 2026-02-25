@@ -1,25 +1,48 @@
 package com.smartcart.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@Table(name = "orders")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name="orders")
+@AllArgsConstructor
 public class Order {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long order_Id;
-	@ManyToOne
-	private User user;
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
+
+    // user who placed the order
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    // list of items in this order
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems;
+
+    // total amount of order
+    @Column(nullable = false)
+    private Double totalAmount;
+
+    // shipping address
+    @Column(nullable = false)
+    private String shippingAddress;
+
+    // payment method (COD, CARD, UPI etc.)
+    private String paymentMethod;
+
+
+    // date order placed
+    private LocalDateTime orderDate;
+
+    // last updated time
+    private LocalDateTime updatedAt;
+
+   
 }

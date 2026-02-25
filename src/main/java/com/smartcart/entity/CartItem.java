@@ -7,24 +7,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
-@Table(name="cart_item")
+@Table(name = "cart_item")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CartItem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@ManyToOne
-	@JoinColumn(name="cart_id")
-	private Cart cart;
-	@ManyToOne
-	@JoinColumn(name="product_id")
-	private Product product;
-	private int quantity;
-}
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // Many items → one cart
+    @ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
+
+    // Many items → one product
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
+    private int quantity;
+
+    private double price; // price at time of adding (important!)
+	}
