@@ -1,53 +1,40 @@
 package com.smartcart.entity;
 
-
-//existing entity created by our team member
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.JoinColumn;
-//import jakarta.persistence.OneToOne;
-//import jakarta.persistence.Table;
-//import lombok.AllArgsConstructor;
-//import lombok.NoArgsConstructor;
-//
-//@Entity
-//@Table(name="cart")
-//@AllArgsConstructor
-//@NoArgsConstructor
-//public class Cart {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Long  cart_id;
-//	@OneToOne
-//	@JoinColumn(name="user_id")
-//	private User cart_user;
-//	
-//}
-
-
-//newly updated 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+
 @Entity
 @Table(name = "carts")
+
 public class Cart {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long  cart_Id;
+	
+	private User user1;
+	
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
-
+    
+    private double totalPrice;
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -58,8 +45,18 @@ public class Cart {
             orphanRemoval = true
     )
     @JsonManagedReference
-    private List<CartItem> cartItems = new ArrayList<>();
+    private List<CartItem> cartItems1 = new ArrayList<>();
 
-    private Double totalPrice = 0.0;
+    private String status; // ACTIVE, CHECKED_OUT, ABANDONED
+
+    private LocalDateTime createdAt;
+
+    // One cart → many cart items
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems;
+
+    
+    private Double totalPrice1 = 0.0;
+
 }
 
