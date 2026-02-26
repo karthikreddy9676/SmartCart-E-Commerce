@@ -1,50 +1,68 @@
 package com.smartcart.serviceimpl;
 
+
+import java.util.List;
 import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.smartcart.entity.User;
+import com.smartcart.repository.Ismartcart_UserRepository;
+import com.smartcart.service.UserService;
+
+
+
 import org.springframework.stereotype.Service;
 
-import com.smartcart.dto.UserDTO;
-import com.smartcart.entity.User;
-import com.smartcart.exception.ResourceNotFoundException;
-import com.smartcart.repository.UserRepository;
-import com.smartcart.service.UserService;
-import com.smartcart.util.AuthUtil;
+
 
 @Service
 public class UserServiceImpl implements UserService {
+	@Autowired
+	private Ismartcart_UserRepository user_repo;
+	@Override
+	public User save_user_details(User user) {
+		// TODO Auto-generated method stub
+		return user_repo.save(user);
+	}
 
-    @Autowired
-    private UserRepository userRepository;
+	@Override
+	public List<User> save_multiple_user_details(List<User> user) {
+		// TODO Auto-generated method stub
+		return user_repo.saveAll(user);
+	}
 
-    @Autowired
-    private AuthUtil authUtil;
+	@Override
+	public Optional<User> find_user_via_Id(Long user_Id) {
+		// TODO Auto-generated method stub
+		return user_repo.findById(user_Id);
+	}
 
-    @Autowired
-    private ModelMapper modelMapper;
+	@Override
+	public List<User> find_all_user_by_Id(List<Long> user_Id) {
+		// TODO Auto-generated method stub
+		return user_repo.findAllById(user_Id);
+	}
+
+	@Override
+	public List<User> find_all_user() {
+		// TODO Auto-generated method stub
+		return user_repo.findAll();
+	}
+
+	@Override
+	public void del_user_by_id(Long user_Id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void del_user_by_id(List<Long> user_Id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
-    @Override
-    public UserDTO fetchCurrentlyLoggedInUserDetails() {
-        User loggedInUser = authUtil.loggedInUser();
-        Optional<User> optionalUser = userRepository.findById(loggedInUser.getUserId());
-        return modelMapper.map(optionalUser.get(), UserDTO.class);
-    }
-
-    @Override
-    public UserDTO updateUserDetails(UserDTO userDTO, Long userId) {
-        User existingUser = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException(String.format("User not found with ID: ", userId)));
-        if (userDTO.getUserName() != null)
-            existingUser.setUserName(userDTO.getUserName());
-
-        if (userDTO.getEmail() != null)
-            existingUser.setEmail(userDTO.getEmail());
-
-        User updatedUser = userRepository.save(existingUser);
-        return modelMapper.map(updatedUser, UserDTO.class);
-    }
 
 	
 }
