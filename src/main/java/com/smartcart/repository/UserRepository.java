@@ -1,6 +1,10 @@
 package com.smartcart.repository;
 
-public interface UserRepository  {
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.smartcart.entity.User;
 
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    Optional<User> findByEmail(String email);
 }
