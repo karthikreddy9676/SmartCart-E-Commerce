@@ -1,22 +1,22 @@
-package com.smartcart.repository;
-
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.smartcart.entity.User;
-
-public interface UserRepository extends JpaRepository<User, Long> {
-	
-
-//    Optional<User> findByUserName(String userName);
+//package com.smartcart.repository;
 //
-//    boolean existsByUserName(String userName);
+//import java.util.Optional;
 //
-//    boolean existsByEmail(String email);
-	
-	Optional<User> findByEmail(String email);
-	
-	
-
-}
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//import com.smartcart.entity.User;
+//
+//public interface UserRepository extends JpaRepository<User, Long> {
+//	
+//
+////    Optional<User> findByUserName(String userName);
+////
+////    boolean existsByUserName(String userName);
+////
+////    boolean existsByEmail(String email);
+//	
+//	Optional<User> findByEmail(String email);
+//	
+//	
+//
+//}
