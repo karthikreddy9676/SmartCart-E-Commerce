@@ -1,8 +1,8 @@
 package com.smartcart.service;
 
-import com.smartcart.dto.LoginRequest;
+import com.smartcart.dto.RegisterRequest;
 
 public interface IUser {
 	
-	String registerUser(LoginRequest req);
+	String registerUser(RegisterRequest req);
 }

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smartcart.dto.LoginRequest;
-import com.smartcart.dto.LoginResponse;
+import com.smartcart.dto.RegisterRequest;
+import com.smartcart.dto.RegisterResponse;
 import com.smartcart.service.IUser;
 
 import lombok.RequiredArgsConstructor;
@@ -21,11 +21,11 @@ public class AuthController {
 	private final IUser userService;
 	
 	@PostMapping
-	public LoginResponse register(@RequestBody LoginRequest req)
+	public RegisterResponse register(@RequestBody RegisterRequest req)
 	{
 		String message=userService.registerUser(req);
 		boolean success=message.equals("User Registered Successfully.....!");
 		
-		return new LoginResponse(success,message);
+		return new RegisterResponse(success,message);
 	}
 }

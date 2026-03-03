@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.smartcart.entity.UserLogin;
+import com.smartcart.entity.RegisterLogin;
 
-public interface UserRepository extends JpaRepository<UserLogin, Long> {
+public interface UserRepository extends JpaRepository<RegisterLogin, Long> {
 
-	Optional<UserLogin> findByEmail(String email);
+	Optional<RegisterLogin> findByEmail(String email);
 	boolean existsByEmail(String email);
 }

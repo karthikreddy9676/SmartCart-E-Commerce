@@ -12,12 +12,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users")
+@Table(name="userRegister")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserLogin 
+public class RegisterLogin 
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

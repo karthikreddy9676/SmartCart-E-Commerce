@@ -3,8 +3,8 @@ package com.smartcart.service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.smartcart.dto.LoginRequest;
-import com.smartcart.entity.UserLogin;
+import com.smartcart.dto.RegisterRequest;
+import com.smartcart.entity.RegisterLogin;
 import com.smartcart.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class UserService implements IUser {
 	
 	private final BCryptPasswordEncoder passwordEncoder;
 	@Override
-	public String registerUser(LoginRequest req) {
+	public String registerUser(RegisterRequest req) {
 		if(!req.getOldPassword().equals(req.getConfirmPassword())) {
 			return "Password Doesn't Match";
 		}
@@ -25,7 +25,7 @@ public class UserService implements IUser {
 			return "Email Already Registered.....!";
 		}
 		
-		UserLogin user=UserLogin.builder()
+		RegisterLogin user=RegisterLogin.builder()
 				.fullName(req.getFullName())
 				.email(req.getEmail())
 				.oldPassword(passwordEncoder.encode(req.getOldPassword()))
