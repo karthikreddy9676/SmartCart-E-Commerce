@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smartcart.dto.LoginRequestDTO;
+import com.smartcart.dto.LoginResponseDTO;
 import com.smartcart.dto.RegisterRequest;
 import com.smartcart.dto.RegisterResponse;
 import com.smartcart.service.IUser;
@@ -28,4 +30,9 @@ public class AuthController {
 		
 		return new RegisterResponse(success,message);
 	}
+	
+	@PostMapping("/login")
+    public LoginResponseDTO login(@RequestBody LoginRequestDTO loginDTO) {
+        return userService.login(loginDTO);
+    }
 }
